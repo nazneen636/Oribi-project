@@ -6,7 +6,7 @@ const SubCatLI = ({ liText, to, className }) => {
     <div>
       <li>
         <Link
-          className={`hover:text-[#262626] hover:font-bold duration-300 transition-all ${className}`}
+          className={`hover:text-[#262626] font-bold text-[12px] md:text-sm duration-300 transition-all ${className}`}
           to={to}
         >
           {liText}
