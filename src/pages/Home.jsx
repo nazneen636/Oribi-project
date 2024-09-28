@@ -4,7 +4,7 @@ import Add from "../components/Add";
 import NewArrival from "../components/NewArrival";
 import Add2 from "../components/Add2";
 import SpecialOffer from "../components/SpecialOffer";
-import Footer from "../components/Footer";
+import BestSelling from "../components/BestSelling";
 
 const Home = () => {
   return (
@@ -12,7 +12,9 @@ const Home = () => {
       <Banner />
       <Add />
       <NewArrival />
+      <BestSelling />
       <Add2 />
+      <SpecialOffer />
     </div>
   );
 };

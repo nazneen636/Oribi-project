@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../layers/Container";
 import { RiBarChartHorizontalFill } from "react-icons/ri";
 import { FaSearch, FaShoppingCart, FaUserAlt } from "react-icons/fa";
@@ -6,13 +6,42 @@ import { BiSolidDownArrow } from "react-icons/bi";
 import CategoryLI from "../layers/CategoryLI";
 import SubCatLI from "../layers/SubCatLI";
 import { IoClose } from "react-icons/io5";
+import axios from "axios";
 const SearchBar = () => {
   let [show, setShow] = useState(false);
   let [user, setUser] = useState(false);
   let [cart, setCart] = useState(false);
 
+  let [search, setSearch] = useState("");
+  let [allProduct, setAllProduct] = useState([]);
+  let [filter, setFilter] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      let response = await axios.get("https://dummyjson.com/products");
+      setAllProduct(response.data.products);
+    };
+    getData();
+  }, []);
+
+  let manageSearch = (element) => {
+    let useInput = element.target.value;
+    setSearch(useInput);
+    console.log(search);
+  };
+  useEffect(() => {
+    if (search == "") {
+      setFilter("");
+    } else {
+      let filterData = allProduct.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilter(filterData);
+    }
+  }, [allProduct, search]);
+
   return (
-    <div className="bg-[#F5F5F3]">
+    <div className="bg-[#F5F5F3] relative">
       <Container className="relative px-3 py-1 md:px-0 md:py-0  md:pt-[25px] md:pb-[6px] bg-[#F5F5F3] flex justify-between gap-2 md:gap-0 items-center z-20">
         <div
           onClick={() => {
@@ -262,6 +291,8 @@ const SearchBar = () => {
         <div className="search relative md:w-auto w-full">
           <input
             type="text"
+            value={search}
+            onChange={manageSearch}
             className="w-full md:w-[601px] p-2 md:py-4 md:px-5 outline-none"
             placeholder="Search Products"
           />
@@ -352,6 +383,31 @@ const SearchBar = () => {
         </div>
         {/* =====user & cart==== */}
       </Container>
+
+      {filter && (
+        <ul className="absolute top-full left-0 z-20 p-5 bg-slate-400 grid grid-cols-3 gap-1">
+          {filter.map((item, index) => (
+            <li
+              className="p-8 rounded bg-slate-200 grid grid-cols-4 gap-2 items-center"
+              key={index}
+            >
+              <img className="w-24 bg-slate-300" src={item.thumbnail} alt="" />
+              <div className="col-span-2">
+                <h4 className="font-bold">{item.title}</h4>
+                <p className="text-red-800">${item.price}</p>
+              </div>
+              <div className="flex flex-col gap-3">
+                <button className="bg-black hover:bg-slate-300 hover:text-black duration-300 transition-all px-2 py-3 rounded-sm text-white">
+                  Add to Cart
+                </button>
+                <button className="bg-black hover:bg-slate-300 hover:text-black duration-300 transition-all px-2 py-3 rounded-sm text-white">
+                  Add to Wishlist
+                </button>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

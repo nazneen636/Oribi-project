@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import Container from "../layers/Container";
@@ -13,73 +13,74 @@ import new6 from "/New Arrival/new6.png";
 import new7 from "/New Arrival/new7.png";
 import new8 from "/New Arrival/new8.png";
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from "react-icons/fa";
+import axios from "axios";
 
-const newProduct = [
-  {
-    id: 1,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new1,
-    productPrice: null,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 2,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new2,
-    productPrice: "$" + 44.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 3,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new3,
-    productPrice: "$" + 24.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 4,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new4,
-    productPrice: "$" + 34.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 5,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new5,
-    productPrice: null,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 6,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new6,
-    productPrice: "$" + 44.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 7,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new7,
-    productPrice: "$" + 24.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-  {
-    id: 8,
-    productTitle: "Basic Crew Neck Tee",
-    productImage: new8,
-    productPrice: "$" + 34.0,
-    productBadge: "New",
-    productColorVariant: "Black",
-  },
-];
+// const newProduct = [
+//   {
+//     id: 1,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new1,
+//     productPrice: null,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 2,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new2,
+//     productPrice: "$" + 44.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 3,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new3,
+//     productPrice: "$" + 24.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 4,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new4,
+//     productPrice: "$" + 34.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 5,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new5,
+//     productPrice: null,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 6,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new6,
+//     productPrice: "$" + 44.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 7,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new7,
+//     productPrice: "$" + 24.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+//   {
+//     id: 8,
+//     productTitle: "Basic Crew Neck Tee",
+//     productImage: new8,
+//     productPrice: "$" + 34.0,
+//     productBadge: "New",
+//     productColorVariant: "Black",
+//   },
+// ];
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -139,12 +140,20 @@ function SamplePrevArrow(props) {
 }
 
 const NewArrival = () => {
+  let [newProduct, setNewProduct] = useState([]);
+  useEffect(() => {
+    const getData = async () => {
+      let response = await axios.get("https://dummyjson.com/products");
+      setNewProduct(response.data.products);
+    };
+    getData();
+  }, []);
   const settings = {
     dots: false,
     arrows: true,
     infinite: true,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     responsive: [
@@ -168,31 +177,18 @@ const NewArrival = () => {
         <div className="">
           <Heading headingText="New Arrivals" className="ml-[20px] mb-12" />
           <Slider {...settings} className="">
-            {newProduct?.map((product) => (
+            {newProduct?.map((item, index) => (
               <ProductItem
-                productImage={product?.productImage}
-                productTitle={product?.productTitle}
-                productPrice={product?.productPrice}
-                productColorVariant={product?.productColorVariant}
-                productBadge={product?.productBadge}
+                key={index}
+                productImage={item.thumbnail}
+                productTitle={item.title}
+                productPrice={item.price}
+                productColorVariant={item.brand}
+                productBadge={item.discountPercentage}
                 className="w-full bg-[#adabab]"
               />
             ))}
           </Slider>
-        </div>
-      </Container>
-
-      <Container>
-        <div className="flex gap-10 flex-wrap mt-[217px]">
-          {newProduct?.slice(4, 8).map((product) => (
-            <ProductItem
-              productImage={product?.productImage}
-              productTitle={product?.productTitle}
-              productPrice={product?.productPrice}
-              productColorVariant={product?.productColorVariant}
-              productBadge={product?.productBadge}
-            />
-          ))}
         </div>
       </Container>
     </div>

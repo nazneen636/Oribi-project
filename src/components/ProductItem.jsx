@@ -22,7 +22,7 @@ const ProductItem = ({
 }) => {
   return (
     <div className={`w-[370px] group ${className}`}>
-      <div className="w-full h-[370px] relative group">
+      <div className="w-full h-[370px] bg-[#F3F3F3] relative group">
         <img
           src={productImage}
           alt={productImage}
@@ -45,13 +45,13 @@ const ProductItem = ({
           </ul>
         </div>
         <div className="badge w-[92px] absolute left-5 top-5 px-8 py-2 bg-black text-white">
-          <p>{productBadge}</p>
+          <p>{productBadge}%</p>
         </div>
       </div>
       <div className="pt-6 bg-white group-hover:bg-[#FAEBEB] hover:border-b-2 hover:border-[#2626267c] duration-500 transition-all">
         <div className="flex justify-between ">
           <h3 className="text-black font-bold text-[20px]">{productTitle}</h3>
-          <p className="text-[16px]">{productPrice}</p>
+          <p className="text-[16px]">${productPrice}</p>
         </div>
         <p className="mt-4">{productColorVariant}</p>
       </div>

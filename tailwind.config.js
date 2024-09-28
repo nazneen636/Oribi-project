@@ -9,7 +9,7 @@ export default {
       dmSans:["DM Sans", 'sans-serif']
     },
     boxShadow: {
-      'xl': '0 4px 4px rgba(0, 0, 0, 0.5)',
+     'one': 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     },
     extend: {},
   },

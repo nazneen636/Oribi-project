@@ -8,12 +8,14 @@ import {
 import RootLayOut from "./layers/RootLayOut";
 import Home from "./pages/Home";
 import ProductPage from "./pages/ProductPage";
+import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayOut />}>
       <Route index element={<Home />}></Route>
       <Route path="/product" element={<ProductPage />}></Route>
+      <Route path="/sign/up" element={<SignUp />}></Route>
     </Route>
   )
 );
