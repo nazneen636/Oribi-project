@@ -14,7 +14,7 @@ const BredCumb = () => {
         <span>Home</span>
         <IoIosArrowForward />
         {window.location.pathname.split("/")[1]}
-        <span className="lowercase">
+        <span className="capitalize">
           {window.location.pathname.split("/")[2]}
         </span>
       </p>

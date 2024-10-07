@@ -1,0 +1,6 @@
+.center{
+    @apply flex justify-center items-center
+}
+.detailsTitle{
+    @apply font-bold text-base leading-[23px] text-[#262626]
+}
