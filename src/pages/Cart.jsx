@@ -3,7 +3,7 @@ import Container from "../layers/Container";
 import BredCumb from "../layers/BredCumb";
 import { Image } from "antd";
 import { IoClose } from "react-icons/io5";
-import product1 from "/New Arrival/new1.png";
+import product1 from "/new_arrival/new1.png";
 import { FaMinus, FaPlus } from "react-icons/fa";
 
 const Cart = () => {
@@ -73,9 +73,19 @@ const Cart = () => {
             <h4 className="text-xl header">$44.00</h4>
           </div>
         </div>
-        <div className="coupon">
-          <input type="text" />
-          <button>Update cart</button>
+        <div className="coupon flex w-full bg-slate-200">
+          {" "}
+          <input
+            className="bg-transparent w-full px-5 placeholder:font-bold placeholder:text-base outline-none text-[#262626] text-xl"
+            type="text"
+            placeholder="Apply coupon"
+          />
+          <button
+            className="bg-slate-800 text-white rounded-l-[20px] w-44 py-3
+          "
+          >
+            Update cart
+          </button>
         </div>
       </Container>
     </div>
