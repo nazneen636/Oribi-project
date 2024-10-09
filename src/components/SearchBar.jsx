@@ -7,6 +7,7 @@ import CategoryLI from "../layers/CategoryLI";
 import SubCatLI from "../layers/SubCatLI";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const SearchBar = () => {
   let [show, setShow] = useState(false);
   let [user, setUser] = useState(false);
@@ -368,12 +369,18 @@ const SearchBar = () => {
                   <span className="text-[#262626] font-bold">$44.00</span>
                 </h4>
                 <div className="text-white font-bold mt-3 flex gap-5 items-center">
-                  <button className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all">
+                  <Link
+                    to="/cart"
+                    className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all"
+                  >
                     View Cart
-                  </button>
-                  <button className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all">
+                  </Link>
+                  <Link
+                    to="/cart"
+                    className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all"
+                  >
                     Checkout
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -397,9 +404,12 @@ const SearchBar = () => {
                 <p className="text-red-800">${item.price}</p>
               </div>
               <div className="flex flex-col gap-3">
-                <button className="bg-black hover:bg-slate-300 hover:text-black duration-300 transition-all px-2 py-3 rounded-sm text-white">
+                <Link
+                  to="/cart"
+                  className="bg-black hover:bg-slate-300 hover:text-black duration-300 transition-all px-2 py-3 rounded-sm text-white"
+                >
                   Add to Cart
-                </button>
+                </Link>
                 <button className="bg-black hover:bg-slate-300 hover:text-black duration-300 transition-all px-2 py-3 rounded-sm text-white">
                   Add to Wishlist
                 </button>

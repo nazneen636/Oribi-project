@@ -4,3 +4,9 @@
 .detailsTitle{
     @apply font-bold text-base leading-[23px] text-[#262626]
 }
+.para{
+    @apply text-base leading-[30px] tracking-wide
+}
+.header{
+    @apply text-base leading-[23px] font-bold text-[#262626]
+}

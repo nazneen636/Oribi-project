@@ -7,6 +7,7 @@ import { PiDotsNineBold } from "react-icons/pi";
 import { IoClose } from "react-icons/io5";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
 import { BiSolidDownArrow } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   let [show, setShow] = useState(true);
@@ -96,12 +97,18 @@ const Nav = () => {
                   <span className="text-[#262626] font-bold">$44.00</span>
                 </h4>
                 <div className="text-white font-bold mt-3 flex gap-5 items-center">
-                  <button className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all">
+                  <Link
+                    to="/cart"
+                    className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all"
+                  >
                     View Cart
-                  </button>
-                  <button className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all">
+                  </Link>
+                  <Link
+                    to="/cart"
+                    className="py-5 px-10 border border-[#2B2B2B] bg-black hover:bg-transparent hover:text-[#262626] duration-500 transition-all"
+                  >
                     Checkout
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -112,7 +119,7 @@ const Nav = () => {
         {show && (
           <ul className="w-full justify-center gap-x-10 shadow-lg shadow-[rgba(38,38,38,0.17)] md:shadow-transparent bg-[#EDEDED] md:bg-transparent py-4 px-3 md:px-0 md:py-0 absolute left-0 top-full md:static flex flex-col md:flex-row rounded-sm">
             <Li liText="Home" className="text-[#262626] px-8 md:px-0" to="/" />
-            <Li liText="Shop" className="px-8 md:px-0" to="/shop" />
+            <Li liText="Shop" className="px-8 md:px-0" to="/product" />
             <Li liText="About" className="px-8 md:px-0" to="/about" />
             <Li liText="Contacts" className="px-8 md:px-0" to="/contacts" />
             <Li liText="Journal" className="px-8 md:px-0" to="/journal" />
