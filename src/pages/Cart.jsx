@@ -73,7 +73,10 @@ const Cart = () => {
             <h4 className="text-xl header">$44.00</h4>
           </div>
         </div>
-        <div className="coupon"></div>
+        <div className="coupon">
+          <input type="text" />
+          <button>Update cart</button>
+        </div>
       </Container>
     </div>
   );
